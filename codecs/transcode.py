@@ -22,7 +22,7 @@ PROFILES = [
     # MUSHRA reference: 48k, dual mono, PCM WAV
     {
         "name": "ref_48k_dualmono",
-        "codec": "pcm_s16le",
+        "codec": "pcm_s24le",
         "bitrate": None,
         "ext": "wav",
         "sample_rate": 48000,
@@ -224,7 +224,7 @@ def transcode_file(input_path: pathlib.Path):
         cmd += profile.get("extra_args", [])
 
         cmd.append(str(out_path))
-
+        print (cmd)
         run_ffmpeg(cmd)
         produced_outputs.append((profile["name"], out_path))
 

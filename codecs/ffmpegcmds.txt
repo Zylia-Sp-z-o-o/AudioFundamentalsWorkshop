@@ -1,0 +1,18 @@
+
+=== Processing: angel.wav ===
+ffmpeg -y -i angel.wav -vn -t 14.612917 -ar 48000 -af pan=stereo|c0=c0|c1=c0 -ac 2 -c:a pcm_s24le compressed/angel_ref_48k_dualmono.wav
+ffmpeg -y -i angel.wav -vn -t 14.612917 -ar 48000 -af pan=stereo|c0=c0|c1=c0 -ac 2 -c:a libmp3lame -b:a 96k compressed/angel_mp3_96k.mp3
+ffmpeg -y -i angel.wav -vn -t 14.612917 -ar 48000 -af pan=stereo|c0=c0|c1=c0 -ac 2 -c:a aac -b:a 64k -movflags +faststart compressed/angel_aac_64k.m4a
+ffmpeg -y -i angel.wav -vn -t 14.612917 -ar 48000 -af pan=stereo|c0=c0|c1=c0 -ac 2 -c:a libopus -b:a 24k compressed/angel_opus_24k.opus
+ffmpeg -y -i angel.wav -vn -t 14.612917 -ar 48000 -af pan=stereo|c0=c0|c1=c0 -ac 2 -c:a aac -b:a 32k -movflags +faststart compressed/angel_aac_32k.m4a
+ffmpeg -y -i angel.wav -vn -t 14.612917 -ar 48000 -af pan=stereo|c0=c0|c1=c0 -ac 2 -c:a flac compressed/angel_flac.flac
+ffmpeg -y -i angel.wav -vn -t 14.612917 -af aresample=16000,aresample=48000,pan=stereo|c0=c0|c1=c0 -ac 2 -c:a pcm_s16le compressed/angel_lp8k_wav.wav
+
+SNR vs ref_48k_dualmono (48000 Hz, mono):
+  ref_48k_dualmono: inf
+  mp3_96k         : 19.89 dB
+  aac_64k         : 12.23 dB
+  opus_24k        : 7.01 dB
+  aac_32k         : 7.69 dB
+  flac            : inf
+  lp8k_wav        : 13.24 dB
